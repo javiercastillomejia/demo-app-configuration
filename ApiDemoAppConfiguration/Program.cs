@@ -1,9 +1,7 @@
 using ApiDemoAppConfiguration.Configuration;
-using System.Configuration;
-
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("AppConfig");
+var connectionString = builder.Configuration.GetConnectionString("AppConfig"); // Important
 
 builder.Host
 .ConfigureAppConfiguration(builder => builder.AddAzureAppConfiguration(options =>
@@ -11,24 +9,20 @@ builder.Host
     options.Connect(connectionString)
            .ConfigureRefresh(refresh =>
             {
-                refresh.Register("Config:Sentinel", refreshAll: true)
+                refresh.Register("Config:Sentinel", refreshAll: true) // Important: It is for hot data refreshing.
                        .SetCacheExpiration(new TimeSpan(0, 0, 5));
             });
 }))
-.ConfigureServices(services => services.AddControllersWithViews());
+.ConfigureServices(services => services.AddControllersWithViews()); // Important
 
-
-// Add services to the container.
-builder.Services.Configure<Config>(builder.Configuration.GetSection("Config"));
+builder.Services.Configure<Config>(builder.Configuration.GetSection("Config")); // Important
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAzureAppConfiguration();
+builder.Services.AddAzureAppConfiguration(); // Important
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

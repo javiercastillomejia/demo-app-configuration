@@ -12,13 +12,13 @@ namespace ApiDemoAppConfiguration.Controllers
         {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
     };
-        private readonly IOptionsSnapshot<Config> _configuration;
+        private readonly IOptionsSnapshot<Config> _configuration; // Important
         private readonly ILogger<WeatherForecastController> _logger;
 
         public WeatherForecastController(IOptionsSnapshot<Config> configuration,
                                          ILogger<WeatherForecastController> logger)
         {
-            _configuration = configuration;
+            _configuration = configuration; // Important
             _logger = logger;
         }
 
