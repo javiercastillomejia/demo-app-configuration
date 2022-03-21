@@ -1,9 +1,11 @@
-using ApiDemoAppConfigurationNetCore31.Configuration;
+using ApiDemoAppConfigurationCommon.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
+using System;
 
 namespace ApiDemoAppConfigurationNetCore31
 {
@@ -22,6 +24,23 @@ namespace ApiDemoAppConfigurationNetCore31
             services.Configure<Config>(Configuration.GetSection("Config"));
             services.AddAzureAppConfiguration();
             services.AddControllers();
+            services.AddSwaggerGen(options =>
+            {
+                var groupName = "v1";
+
+                options.SwaggerDoc(groupName, new OpenApiInfo
+                {
+                    Title = $"App configuration {groupName}",
+                    Version = groupName,
+                    Description = "Almacenamiento de parámetros rápido y escalable para la configuración de aplicaciones",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Javier Castillo Mejía",
+                        Email = string.Empty,
+                        Url = new Uri("https://github.com/javiercastillomejia"),
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -30,6 +49,11 @@ namespace ApiDemoAppConfigurationNetCore31
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(c =>
+                {
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "App configuration V1");
+                });
             }
 
             app.UseHttpsRedirection();

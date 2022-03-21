@@ -1,4 +1,5 @@
 ﻿using System;
+using Azure.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +22,10 @@ namespace ApiDemoAppConfigurationNetCore31.Extensions
                         refresh
                             .Register("Sentinel", true)
                             .SetCacheExpiration(TimeSpan.FromSeconds(5));
+                    });
+                    options.ConfigureKeyVault(kv =>
+                    {
+                        kv.SetCredential(new DefaultAzureCredential());
                     });
                 });
             });

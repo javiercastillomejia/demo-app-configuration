@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDemoAppConfigurationNetCore31", "ApiDemoAppConfigurationNetCore31\ApiDemoAppConfigurationNetCore31.csproj", "{1723011C-66D9-4E11-84D8-C38F732531B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiDemoAppConfigurationNetCore31", "ApiDemoAppConfigurationNetCore31\ApiDemoAppConfigurationNetCore31.csproj", "{1723011C-66D9-4E11-84D8-C38F732531B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDemoAppConfigurationNet60", "ApiDemoAppConfigurationNet60\ApiDemoAppConfigurationNet60.csproj", "{520E9925-622C-42DC-AAB0-7956780EADAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiDemoAppConfigurationNet60", "ApiDemoAppConfigurationNet60\ApiDemoAppConfigurationNet60.csproj", "{520E9925-622C-42DC-AAB0-7956780EADAC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiDemoAppConfigurationCommon", "ApiDemoAppConfigurationCommon\ApiDemoAppConfigurationCommon.csproj", "{E25BA22F-D9D5-414A-920D-2BCDFE60B2AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{520E9925-622C-42DC-AAB0-7956780EADAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{520E9925-622C-42DC-AAB0-7956780EADAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{520E9925-622C-42DC-AAB0-7956780EADAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E25BA22F-D9D5-414A-920D-2BCDFE60B2AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E25BA22F-D9D5-414A-920D-2BCDFE60B2AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E25BA22F-D9D5-414A-920D-2BCDFE60B2AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E25BA22F-D9D5-414A-920D-2BCDFE60B2AB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,4 +1,4 @@
-﻿using ApiDemoAppConfigurationNet60.Configuration;
+﻿using ApiDemoAppConfigurationCommon.Configuration;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 
