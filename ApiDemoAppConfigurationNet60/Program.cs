@@ -1,25 +1,19 @@
-using ApiDemoAppConfiguration.Configuration;
+using ApiDemoAppConfigurationNet60.Configuration;
+using ApiDemoAppConfigurationNet60.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("AppConfig"); // Important
 
 builder.Host
-.ConfigureAppConfiguration(builder => builder.AddAzureAppConfiguration(options =>
-{
-    options.Connect(connectionString)
-           .ConfigureRefresh(refresh =>
-            {
-                refresh.Register("Config:Sentinel", refreshAll: true) // Important: It is for hot data refreshing.
-                       .SetCacheExpiration(new TimeSpan(0, 0, 5));
-            });
-}))
-.ConfigureServices(services => services.AddControllersWithViews()); // Important
+.AzureAppConfigurationBuild(connectionString)
+.ConfigureServices(services => services.AddControllersWithViews());
 
 builder.Services.Configure<Config>(builder.Configuration.GetSection("Config")); // Important
+builder.Services.AddAzureAppConfiguration(); // Important
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddAzureAppConfiguration(); // Important
 
 var app = builder.Build();
 
