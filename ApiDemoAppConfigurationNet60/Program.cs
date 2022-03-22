@@ -42,10 +42,8 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseAzureAppConfiguration(); // Important
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

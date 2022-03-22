@@ -8,17 +8,23 @@ namespace ApiDemoAppConfigurationNet60.Controllers
     [Route("[controller]")]
     public class ConfigurationController : ControllerBase
     {
-        private readonly IOptionsSnapshot<Config> _configuration; // Important
+        private Config _configuration;
 
-        public ConfigurationController(IOptionsSnapshot<Config> configuration)
+        public ConfigurationController(IOptionsMonitor<Config> options)
         {
-            _configuration = configuration; // Important
+
+            _configuration = options.CurrentValue;
+
+            options.OnChange(config =>
+            {
+                _configuration = config;
+            });
         }
 
         [HttpGet(Name = "All")]
         public Config Get()
         {
-            return _configuration.Value;
+            return _configuration;
         }
     }
 }
